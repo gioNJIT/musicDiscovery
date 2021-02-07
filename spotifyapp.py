@@ -53,9 +53,9 @@ def hello_world():
         'market':'US',
     }
     tracklist=[]
-    trackid=[]
     random.seed(datetime.now())
     tracknum=random.randint(0,9)
+    preview=''
     
        
     
@@ -74,7 +74,9 @@ def hello_world():
         if i==tracknum:
             trackuri=data['tracks'][i]['uri'][14:]
             trackimage=data['tracks'][i]['album']['images'][0]['url']
-            print(trackimage)
+            preview=data['tracks'][i]['preview_url']
+            
+
         
        
     
@@ -90,6 +92,7 @@ def hello_world():
         trackuri=trackuri,
         track=tracklist[tracknum],
         trackimage=trackimage,
+        preview=preview
         )
 
 
