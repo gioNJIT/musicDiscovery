@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+         <link rel="stylesheet" href= {{ url_for('static',filename='style.css') }} type="text/css" />
+         
+    </head>
+    <body>
+        <h1>
+            <p style="color: blue;">Random artist: {{artist}}</p>
+            <p>Top tracks:</p>
+            <ol class="changeol"> 
+                {%for i in range(0, len)%} 
+  
+                    <li>{{tracks[i]}}</li> 
+                {%endfor%} 
+            </ol> 
+            
+        </h1>
+        
+        <h1>Random track and uri:
+        {{track}}   {{trackuri}}
+        </h1>
+        <p><img src='{{trackimage}}' alt="album image" width="460" height="345"></p>
+        
+    </body>
+</html>
