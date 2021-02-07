@@ -8,22 +8,28 @@
     <body>
         <h1>
             <p style="color: blue;">Random artist: {{artist}}</p>
+            
+        </h1>
+            <div class="list">
             <p>Top tracks:</p>
             <ol class="changeol"> 
                 {%for i in range(0, len)%} 
   
                     <li>{{tracks[i]}}</li> 
                 {%endfor%} 
-            </ol> 
+            </ol>
+            </div>
             
-        </h1>
         
-        <h1>Random track from above:
+        
+        <div class="preview">
+        <h1>Random preview from the above list:
         {{track}} <br>
         
         Preview:<iframe src={{preview}} alt="not found" width="200" height="66" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
         
-        <p><img src='{{trackimage}}' alt="album image" width="460" height="345"></p>
+        <p><img class="displayed" src='{{trackimage}}' alt="album image" width="460" height="345"></p>
         </h1>
        
         

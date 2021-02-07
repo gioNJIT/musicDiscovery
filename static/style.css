@@ -4,3 +4,25 @@ body {
 }
 
 
+.list {
+    border: 2px solid black;
+    margin: 20px;   /* how far the other objects are */
+    padding: 20px;  /* spacing inside the border itself */
+    text-align: center; 
+    list-style-position: inside;   /* keeps the numbers in the list aligne with list text */
+    font-size: 25px;
+}
+
+.displayed {
+    
+    position:relative; /* changes postion relative to its orginal position */
+    display: block;   /*It starts on a new line, and takes up the whole width*/
+    margin-left: auto; /*margins are the space between object and end of page*/
+    margin-right: auto;
+}
+
+
+h1 {
+    
+    text-align: center;
+}
