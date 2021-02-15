@@ -8,18 +8,16 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    print("working!!!")
-    ############################################################################################################################return '<b>Hello, World!</b>'
-    
+@app.route('/')#           connects route with function below
+def spotifyapp():
+
+
     load_dotenv(find_dotenv())
 
 
-
+############RETRIEVING TOKEN USING CREDENTIALS FOUND IN .ENV FILE
     AUTH_URL = 'https://accounts.spotify.com/api/token'
     
-    # POST
     auth_response = requests.post(
         AUTH_URL,
         {
@@ -29,10 +27,10 @@ def hello_world():
         }
     )
     
-    # convert the response to JSON
+    # SAVING TEXT IN JSON FORMAT
     auth_response_data = auth_response.json()
     
-    # save the access token
+    # SAVING TOKEN
     access_token = auth_response_data['access_token']
     
     
@@ -69,20 +67,49 @@ def hello_world():
     
     data=api_response.json()
     for i in range(10):
-        print(data['tracks'][i]['name'])
+        #print(data['tracks'][i]['name'])
         tracklist.append(data['tracks'][i]['name'])
         if i==tracknum:
             trackuri=data['tracks'][i]['uri'][14:]
             trackimage=data['tracks'][i]['album']['images'][0]['url']
             preview=data['tracks'][i]['preview_url']
-            
-
-        
-       
     
+    rickRL="https://p.scdn.co/mp3-preview/22bf10aff02db272f0a053dff5c0063d729df988?cid=774b29d4f13844c495f206cafdad9c86"
+
+####################################################genius lyrics section below        
        
+    base_url = 'https://api.genius.com'
+
+    song = tracklist[tracknum]
+
+    path = 'search/'
+    request_uri = '/'.join([base_url, path])
+    
+    
+    params = {'q': song}
+    
+    token = 'Bearer {}'.format(os.getenv('GENIUS_KEY'))
+    headers = {'Authorization': token}
+    
+    r = requests.get(request_uri, params=params, headers=headers)  
+    geniusdata=r.json()
+    
+    
+    artistlow=artist.lower()
+    song_url=geniusdata['response']['hits'][0]['result']['url']
+    for x in range(3):
+        checkartist=geniusdata['response']['hits'][x]['result']['full_title']
+        if artistlow in checkartist.lower().replace(' ',' '):
+            break
+        
+    PHRASE="preview"
+    print("preview")    
+    if preview==None:
+        preview=rickRL
+        PHRASE="Sorry, no preview available"
      
-   ######################################################################################################################################################
+    PHRASE   
+   ###################### SENDING DATA TO HTML FILE 
    
     return render_template(
         "index.html",
@@ -92,12 +119,19 @@ def hello_world():
         trackuri=trackuri,
         track=tracklist[tracknum],
         trackimage=trackimage,
-        preview=preview
+        preview=preview,
+        song_url=song_url,
+        PHRASE=PHRASE
         )
+        
+        
+     
+        
+    
 
 
 app.run(
     port=int(os.getenv('PORT', 8080)),
-    host=os.getenv('IP', '0.0.0.0'),
+    host=os.getenv('IP', '0.0.0.0'), #setting app up to be an externally visible server
     debug=True
 )

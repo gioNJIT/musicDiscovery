@@ -9,7 +9,7 @@ body {
     margin: 20px;   /* how far the other objects are */
     padding: 20px;  /* spacing inside the border itself */
     text-align: center; 
-    list-style-position: inside;   /* keeps the numbers in the list aligne with list text */
+    list-style-position: inside;   /* keeps the numbers in the list aligned with list text */
     font-size: 25px;
 }
 
@@ -19,6 +19,7 @@ body {
     display: block;   /*It starts on a new line, and takes up the whole width*/
     margin-left: auto; /*margins are the space between object and end of page*/
     margin-right: auto;
+
 }
 
 
