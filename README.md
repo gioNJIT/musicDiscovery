@@ -59,3 +59,6 @@ check to make sure your .env file has the correct keys and that the contents of 
 export CLIENT_ID="@#$Jnk2j4NJq@#$kj@n#$jkkNJ23K4"
 
 ^^keep the quotations. you should only be changing the text inside the quotes.
+
+
+### readme format credit: https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
